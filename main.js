@@ -2,6 +2,10 @@ const productContainer = document.querySelector("#product-container");
 const categorySelect = document.querySelector("#category-select");
 const productDetail = document.querySelector("#product-detail");
 
+productContainer.innerHTML = `<div class="spinner-border" role="status">
+<span class="visually-hidden">Loading...</span>
+</div>`;
+
 fetch("https://dummyjson.com/products")
   .then((response) => {
     return response.json();
@@ -52,6 +56,7 @@ fetch("https://dummyjson.com/products")
   })
   .catch((error) => {
     console.log(error);
+    productContainer.innerHTML = "No items found";
   });
 
 function generateProductMarkup(product) {
